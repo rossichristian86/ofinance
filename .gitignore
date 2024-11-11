@@ -1,0 +1,9 @@
+.out/*
+.vscode/*
+**/__pycache__
+*.pyc
+
+# Python build files
+build
+dist
+*.egg*
