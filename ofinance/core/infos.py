@@ -14,7 +14,6 @@ def add_profitable_years(obj_infos, obj_financials, label):
     nYears = len(net_income_senza_nan)
     obj_infos[label.value] = f"{profitYears}/{nYears}"
 
-    print(obj_financials[Financials.NetIncome.value])
 
 def add_profitable_years_noTTM(obj_infos, obj_financials, label):
 

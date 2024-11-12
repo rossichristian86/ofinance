@@ -1,10 +1,10 @@
 from ofinance import *
+from ofinance.snapshot import read_snapshot
 
+'''
 # Data download
-stockData = OFinance("MCRI")
-
+stockData = OFinance("MCRI", snapshotPath=".out/")
 print(stockData.info)
-
 print(stockData.financials[Financials.RevenuePerShareGrowth1Y.value])
 print(stockData.financials[Financials.RevenueGrowth1Y.value])
 print(stockData.financials[Financials.BasicAverageShares.value])
@@ -13,3 +13,14 @@ print(stockData.financials[Financials.OperatingIncome.value])
 print(stockData.financials[Financials.NetIncome.value])
 print(stockData.financials[Financials.NetMargin.value])
 print(stockData.financials[Financials.OperatingMargin.value])
+'''
+
+stockData = OFinance("MCRI", snapshotPath=".out/")
+#print(stockData.info)
+#print(stockData.financials[Financials.NetIncome.value])
+print(stockData.quarterly_financials[Quarterlyfinancials.TotalRevenue.value])
+print("\n\n")
+#stockData.read_snapshot("haha")
+
+stockData2 = read_snapshot(".out/data.json")
+print(stockData2.quarterly_financials[Quarterlyfinancials.TotalRevenue.value])

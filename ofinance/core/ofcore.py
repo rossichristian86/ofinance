@@ -1,13 +1,15 @@
 import yfinance as yf
 import pandas as pd
+import json
 from . import financialsY as fy
 from . import infos as cfInfo
 from . import financialsYoY as fyoy
 from . import cfutils as cf
 from ..ofinance_defines import *
 
+POS_TICKER = 1
 POS_MARKET = 1
-DEFAULT_MARKET = "USA"
+DEFAULT_MARKET = "US"
 
 class OfCore():
 
@@ -15,6 +17,8 @@ class OfCore():
 
         # Definisco il mercato di riferimento
         sym_market = str.split(ticker)
+
+        self.ticker = sym_market[POS_TICKER] if len(sym_market) > 1 else ticker
         self.market = sym_market[POS_MARKET] if len(sym_market) > 1 else DEFAULT_MARKET
 
         # Download data
@@ -64,4 +68,38 @@ class OfCore():
         self.financials = financials
         self.info = info
         self.quarterly_financials = quarterly_financials
+
+    def take_snapshot(self, path):
+        # Ottieni le informazioni della stock
+        stock_info = self.info
+
+        # Ottieni i financials (bilancio d'esercizio)
+        financials = self.financials.to_dict()
+        quarterly_financials = self.quarterly_financials.to_dict()
+
+        financials = cf.convert_keys_to_str(self.financials.to_dict())
+        quarterly_financials = cf.convert_keys_to_str(self.quarterly_financials.to_dict())
+
+        #balance_sheet = self.balance_sheet.to_dict()
+        #cashflow = self.cashflow.to_dict()
+
+        # Combina tutte le informazioni in un unico dizionario
+        stock_data = {
+            'info': stock_info,
+            'financials': financials,
+            'quarterly_financials': quarterly_financials
+            #'balance_sheet': balance_sheet,
+            #'cashflow': cashflow
+        }
+
+        # outFileName =  path + "/" + <market>_<symbol>_<date>_<sha>.json
+
+        outFileName = f'{path}/data.json'
+
+        # Salva tutto in un file JSON
+        with open(outFileName, 'w') as json_file:
+            json.dump(stock_data, json_file, indent=4)
+
+        
+        
 
