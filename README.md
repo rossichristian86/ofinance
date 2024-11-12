@@ -19,23 +19,23 @@ pip install dist/ofinance-<version>-py3-none-any.whl
 #### Usage
 Usage example:
 ```python
-import ofinance as of
+from ofinance import *
 
 # Data download
-stockData = of.OFinance("MCRI")
-print(stockData)
+stockData = OFinance("MCRI")
 
 # Print data
-print(stockData.info.keys())
-print(stockData.info[of.Info.EnterpriseValue.value])
-print(stockData.financials[of.Financials.RevenuePerShareGrowth1Y.value])
-print(stockData.financials[of.Financials.RevenueGrowth1Y.value])
-print(stockData.financials[of.Financials.BasicAverageShares.value])
-print(stockData.financials[of.Financials.Revenues.value])
-print(stockData.financials[of.Financials.OperatingIncome.value])
-print(stockData.financials[of.Financials.NetIncome.value])
-print(stockData.financials[of.Financials.NetMargin.value])
-print(stockData.financials[of.Financials.OperatingMargin.value])
+print(stockData.info[Info.EnterpriseValue.value])
+print(stockData.info)
+print(stockData.financials[Financials.RevenuePerShareGrowth1Y.value])
+print(stockData.financials[Financials.RevenueGrowth1Y.value])
+print(stockData.financials[Financials.BasicAverageShares.value])
+print(stockData.financials[Financials.Revenues.value])
+print(stockData.financials[Financials.OperatingIncome.value])
+print(stockData.financials[Financials.NetIncome.value])
+print(stockData.financials[Financials.NetMargin.value])
+print(stockData.financials[Financials.OperatingMargin.value])
+
 ```
 
 ### Features

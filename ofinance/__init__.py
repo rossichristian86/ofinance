@@ -1,2 +1,2 @@
 from .ofinance import OFinance
-from .utils.defines import *
+from .ofinance_defines import *

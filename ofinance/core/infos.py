@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-from .defines import *
+from ..ofinance_defines import *
 import math
 
 ## Tutti questi metodi prendono info e ci aggiungono label
