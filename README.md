@@ -1,8 +1,13 @@
 # OpenFinance
 A yfinance library with steroids.
 
-### Main functionality
+### Main class
 
+##### OFinance
+The core of the library, it provides same info as yfinance with more elaborated data.
+
+##### Snapshot
+Can upload a OFinance object from a OFinance snapshot file (method take_snapshot() in OFinance class).
 
 #### Build
 ```bash

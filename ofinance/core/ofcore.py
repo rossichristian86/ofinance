@@ -65,6 +65,11 @@ class OfCore():
         cfInfo.add_profitable_years(info, financials, Info.ProfitableYears)
         cfInfo.add_profitable_years_noTTM(info, financials, Info.ProfitableYearsNoTTM)
 
+        #TODO info da aggiungere:
+        # revenue_to_ev = (revenues*mean_net_margin) / EV
+        # revenue_operative_to_ev = (operative_revenues*mean_net_margin) / EV
+        # revenue_operative_to_ev = (operative_revenues*mean_operating_margin) / EV
+
         self.financials = financials
         self.info = info
         self.quarterly_financials = quarterly_financials
