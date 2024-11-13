@@ -4,17 +4,17 @@ import json
 import pandas as pd
 
 
+DEFAULT_ORIGIN = "DEF"
 
 class OFinance(OfCore):
     def __init__(self, ticker=None, snapshotPath="") -> None:
         if ticker != None:
             super().__init__(ticker)
-            if snapshotPath != "" : self.take_snapshot(snapshotPath) 
+            if snapshotPath != "" : self.take_snapshot(snapshotPath, DEFAULT_ORIGIN) 
 
 
-    def take_snapshot(self, snapshotsDir):
-        # outFileName =  path + "/" + <market>_<symbol>_<date>_<sha>.json
-        super().take_snapshot(snapshotsDir)
+    def take_snapshot(self, snapshotsDir, origin=DEFAULT_ORIGIN):
+        super().take_snapshot(snapshotsDir,origin)
         
 
     def __repr__(self) -> str:
