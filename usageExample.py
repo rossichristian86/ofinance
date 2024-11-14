@@ -15,8 +15,9 @@ print(stockData.financials[Financials.NetMargin.value])
 print(stockData.financials[Financials.OperatingMargin.value])
 '''
 
-stockData = OFinance("STALM.MI", snapshotPath=".out/")
-#print(stockData.info)
+stockData = OFinance("ATKR", snapshotPath=".out/")
+
+print(stockData.info)
 #print(stockData.financials[Financials.NetIncome.value])
 #print(stockData.quarterly_financials[Quarterlyfinancials.TotalRevenue.value])
 #print("\n\n")

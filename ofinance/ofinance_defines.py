@@ -17,6 +17,13 @@ class Info(Enum):
     ProfitableYears = 'profitableYears'
     ProfitableYearsNoTTM = 'profitableYearsNoTTM'
 
+    #TODO da aggiungere implementazione
+    NetMarginMean = "netMarginMean"
+    NetMarginMean1YNegativeExcluded = "netMarginMean1YNegativeExcluded"
+
+    # (Revenue*NetMarginMean)/EnterpriseValue
+    # (Revenue*NetMarginMean1YNegativeExcluded)/EnterpriseValue
+
 
 class Quarterlyfinancials(Enum):
     TotalRevenue = 'Total Revenue'

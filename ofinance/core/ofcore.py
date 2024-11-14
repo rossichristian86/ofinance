@@ -1,6 +1,8 @@
 import yfinance as yf
 import pandas as pd
 import json
+from datetime import datetime
+import hashlib
 from . import financialsY as fy
 from . import infos as cfInfo
 from . import financialsYoY as fyoy
@@ -23,15 +25,16 @@ class OfCore():
         self.ticker = sym_market[POS_TICKER] if len(sym_market) > 1 else ticker
         self.market = sym_market[POS_MARKET] if len(sym_market) > 1 else DEFAULT_MARKET
 
-        # Download data
-        stock = yf.Ticker(ticker)
-
-        # Get info and financials Y and Q
-        info = stock.info
-        financials = stock.financials.T
-        quarterly_financials = stock.quarterly_financials.T
-        
         try:
+            # Download data
+            stock = yf.Ticker(ticker)
+
+            # Get info and financials Y and Q
+            info = stock.info
+            financials = stock.financials.T
+            quarterly_financials = stock.quarterly_financials.T
+        
+        
         
             # Calculate TTM Values for financials data, it will be inserted in financials
             ttm_data = {}
@@ -68,6 +71,7 @@ class OfCore():
             ### Section custom infos
             cfInfo.add_profitable_years(info, financials, Info.ProfitableYears)
             cfInfo.add_profitable_years_noTTM(info, financials, Info.ProfitableYearsNoTTM)
+            cfInfo.add_net_margin_mean(info, financials, Info.NetMarginMean)
 
             #TODO info da aggiungere:
             # revenue_to_ev = (revenues*mean_net_margin) / EV
@@ -106,10 +110,15 @@ class OfCore():
             'quarterly_financials': quarterly_financials
         }
 
-        date = "dataOggi"
-        sha = "sha"
+        # Stringa con la data di oggi nel formato YYYYMMDD
+        now = datetime.now()
+        data_oggi = now.strftime("%Y%m%d")
+        data_for_sha = now.strftime("%Y%m%d.%S.%f")
 
-        outFileName =  f"{path}/{origin}_{self.market}_{self.ticker}_{date}_{sha}.json"
+        # Creazione di una stringa SHA-1 di esempio (puoi usare qualsiasi stringa come input)
+        sha_string = hashlib.sha1(data_for_sha.encode()).hexdigest()  # Usa sha256() per SHA-256
+
+        outFileName =  f"{path}/{origin}_{self.market}_{self.ticker}_{data_oggi}_{sha_string}.json"
 
         # Salva tutto in un file JSON
         print(f"outFileName {outFileName}")

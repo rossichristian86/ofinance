@@ -23,3 +23,8 @@ def add_profitable_years_noTTM(obj_infos, obj_financials, label):
     profitYears = len([x for x in net_income_senza_nan if x > 0])
     nYears = len(net_income_senza_nan)
     obj_infos[label.value] = f"{profitYears}/{nYears}"
+
+
+def add_net_margin_mean(obj_infos, obj_financials, label):
+    net_margin_senza_TTM = obj_financials[Financials.NetMargin.value][1:]
+    obj_infos[label.value] = f"{round(net_margin_senza_TTM.mean(),3)}"
