@@ -15,10 +15,12 @@ print(stockData.financials[Financials.NetMargin.value])
 print(stockData.financials[Financials.OperatingMargin.value])
 '''
 
-stockData = OFinance("ATKR", snapshotPath=".out/")
+# gira NNE
+
+stockData = OFinance("NNE", snapshotPath=".out/")
 
 print(stockData.info)
-#print(stockData.financials[Financials.NetIncome.value])
+print(stockData.financials[Financials.Revenues.value])
 #print(stockData.quarterly_financials[Quarterlyfinancials.TotalRevenue.value])
 #print("\n\n")
 #stockData.read_snapshot("haha")

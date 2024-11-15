@@ -11,18 +11,26 @@ class Info(Enum):
     ForwardEps = 'forwardEps'
     TotalRevenue = 'totalRevenue'
     TotalDebt = 'totalDebt'
+    TotalCash = 'totalCash'
     OperatingMargins = 'operatingMargins'
 
     #Custom
     ProfitableYears = 'profitableYears'
     ProfitableYearsNoTTM = 'profitableYearsNoTTM'
 
-    #TODO da aggiungere implementazione
+    
     NetMarginMean = "netMarginMean"
     NetMarginMean1YNegativeExcluded = "netMarginMean1YNegativeExcluded"
+    NetMarginMeanRevenuesToEv = "netMarginMeanRevenuesToEv"
+    NetMarginMean1YNegativveExcludedRevenuesToEv = "netMarginMean1YNegativveExcludedRevenuesToEv"
+    EnterpriseValueCalculated = "enterpriseValueCalculated"
 
-    # (Revenue*NetMarginMean)/EnterpriseValue
-    # (Revenue*NetMarginMean1YNegativeExcluded)/EnterpriseValue
+    #TODO da aggiungere implementazione
+    # RevenuePerShareGrow1Y
+    # RevenuePerShareGrow3Y
+
+    
+
 
 
 class Quarterlyfinancials(Enum):
@@ -70,7 +78,7 @@ class Financials(Enum):
         'exchange', 'quoteType', 'symbol', 'underlyingSymbol', 'shortName', 'longName', 'firstTradeDateEpochUtc', 'timeZoneFullName', 
         'timeZoneShortName', 'uuid', 'messageBoardId', 'gmtOffSetMilliseconds', 'currentPrice', 'targetHighPrice', 'targetLowPrice', 
         'targetMeanPrice', 'targetMedianPrice', 'recommendationMean', 'recommendationKey', 'numberOfAnalystOpinions', 
-        'totalCash', 'totalCashPerShare', 'ebitda',  'quickRatio', 'currentRatio',  'debtToEquity',
+        'totalCashPerShare', 'ebitda',  'quickRatio', 'currentRatio',  'debtToEquity',
         'revenuePerShare', 'returnOnAssets', 'returnOnEquity', 'earningsGrowth', 'revenueGrowth', 
         'grossMargins', 'ebitdaMargins',  'financialCurrency', 'trailingPegRatio'
     '''
