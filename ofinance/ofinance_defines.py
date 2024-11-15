@@ -24,6 +24,7 @@ class Info(Enum):
     NetMarginMeanRevenuesToEv = "netMarginMeanRevenuesToEv"
     NetMarginMean1YNegativveExcludedRevenuesToEv = "netMarginMean1YNegativveExcludedRevenuesToEv"
     EnterpriseValueCalculated = "enterpriseValueCalculated"
+    DebtToNetMarginRevenues = "debtToNetMarginRevenues"
 
     #TODO da aggiungere implementazione
     # RevenuePerShareGrow1Y

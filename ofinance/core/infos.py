@@ -39,10 +39,10 @@ def add_custom_info(obj_infos, obj_financials):
 
     obj_infos[Info.EnterpriseValueCalculated.value] = round(float(obj_infos[Info.MarketCap.value]) + float(obj_infos[Info.TotalDebt.value]) - float(obj_infos[Info.TotalCash.value]),3)
 
-    
+    revenue = obj_financials[Financials.OperatingRevenue.value]["TTM"] if obj_financials[Financials.OperatingRevenue.value]["TTM"] > 0 else obj_financials[Financials.Revenues.value]["TTM"]
+
     # NetMarginMeanRevenuesToEv
     try:
-        revenue = obj_financials[Financials.OperatingRevenue.value]["TTM"] if obj_financials[Financials.OperatingRevenue.value]["TTM"] > 0 else obj_financials[Financials.Revenues.value]["TTM"]
         NetMarginMeanRevenuesToEv_local = (revenue*obj_infos[Info.NetMarginMean.value])/float(obj_infos[Info.EnterpriseValueCalculated.value])
         #print(f"NetMarginMeanRevenuesToEv_local {NetMarginMeanRevenuesToEv_local} revenue {revenue} obj_infos[Info.NetMarginMean.value] {obj_infos[Info.NetMarginMean.value]}")
         obj_infos[Info.NetMarginMeanRevenuesToEv.value] = f"{round(NetMarginMeanRevenuesToEv_local,3)}"
@@ -52,11 +52,19 @@ def add_custom_info(obj_infos, obj_financials):
 
     # NetMarginMean1YNegativveExcludedRevenuesToEv
     try:
-        revenue = obj_financials[Financials.OperatingRevenue.value]["TTM"] if obj_financials[Financials.OperatingRevenue.value]["TTM"] > 0 else obj_financials[Financials.Revenues.value]["TTM"]
         NetMarginMean1YNegativveExcludedRevenuesToEv_local = (revenue*obj_infos[Info.NetMarginMean1YNegativeExcluded.value])/float(obj_infos[Info.EnterpriseValueCalculated.value])
         #print(f"NetMarginMean1YNegativveExcludedRevenuesToEv_local {NetMarginMean1YNegativveExcludedRevenuesToEv_local} obj_infos[Info.NetMarginMean.value] {obj_infos[Info.NetMarginMean.value]}")
         obj_infos[Info.NetMarginMean1YNegativveExcludedRevenuesToEv.value] = f"{round(NetMarginMean1YNegativveExcludedRevenuesToEv_local,3)}"
     except:
         print("ERROR: Info.NetMarginMean1YNegativveExcludedRevenuesToEv something wrong")
         obj_infos[Info.NetMarginMean1YNegativveExcludedRevenuesToEv.value] = f"{0}"
+
+    # DebtToNetMarginRevenues
+    try:
+        DebtToNetMarginRevenues_local = float(obj_infos[Info.TotalDebt.value])/(revenue*obj_infos[Info.NetMarginMean.value])
+        #print(f"NetMarginMeanRevenuesToEv_local {NetMarginMeanRevenuesToEv_local} revenue {revenue} obj_infos[Info.NetMarginMean.value] {obj_infos[Info.NetMarginMean.value]}")
+        obj_infos[Info.DebtToNetMarginRevenues.value] = f"{round(DebtToNetMarginRevenues_local,2)}"
+    except:
+        print("ERROR: Info.DebtToNetMarginRevenues something wrong")
+        obj_infos[Info.DebtToNetMarginRevenues.value] = f"{0}"
     

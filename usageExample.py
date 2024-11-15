@@ -17,7 +17,7 @@ print(stockData.financials[Financials.OperatingMargin.value])
 
 # gira NNE
 
-stockData = OFinance("NNE", snapshotPath=".out/")
+stockData = OFinance("PARA", snapshotPath=".out/")
 
 print(stockData.info)
 print(stockData.financials[Financials.Revenues.value])
